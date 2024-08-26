@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "ca.andydbc.unity-texture-packer": "file:C:/Users/gohan/Downloads/unity-texture-packer-master/unity-texture-packer-master",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.ide.rider": "3.0.31",
