@@ -40,9 +40,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Vector3 globalGravityDir; //Always down
     [SerializeField] public Vector3 curGravityDir; //Current Dir
     [SerializeField] public Vector3 gravityVector;
+    [SerializeField] public Vector3 curGravityVector; // for lerping
     [SerializeField] private ConstantForce cForce;
     [SerializeField] private float verticalSpeed = 0f;
     [SerializeField] private float jumpSpeed = 0f;
+    [SerializeField] private float planetRotateSpeed = 10f;
     [SerializeField] private GravityField curGravityField;
     [SerializeField] private Collider lastCollider;
 
@@ -73,19 +75,12 @@ public class PlayerController : MonoBehaviour
         globalGravityDir = Vector3.down;
         curGravityDir = globalGravityDir;
         gravityVector = curGravityDir * gravity;
+        curGravityVector = gravityVector;
         //stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
 
     private void Update()
     {
-        //Orientation
-        Vector3 upDir = -curGravityDir;
-
-        //Project on Plane makes a vector3 by projecting the player's forward direction onto the plane perpendicular to gravity
-        Vector3 forwardDir = Vector3.ProjectOnPlane(transform.forward, curGravityDir);
-        transform.rotation = Quaternion.LookRotation(forwardDir, upDir);
-
-
         isGrounded = Physics.Raycast(transform.position, curGravityDir, playerHeight * 0.5f + 0.2f, whatIsGround);
         MyInput();
         SpeedControl();
@@ -99,6 +94,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = 0;
+            //Vector3 targetGravityVector = gravityVector;
+            //curGravityVector = Vector3.Lerp(curGravityVector, targetGravityVector, 1f * Time.deltaTime);
+            //rb.velocity += curGravityVector * Time.deltaTime; // This is the gravity line
             rb.velocity += gravityVector * Time.deltaTime; // This is the gravity line
         }
     }
@@ -141,6 +139,14 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        //Orientation
+        Vector3 upDir = -curGravityDir.normalized;
+        
+        //Project on Plane makes a vector3 by projecting the player's forward direction onto the plane perpendicular to gravity
+        Vector3 forwardDir = Vector3.ProjectOnPlane(transform.forward, curGravityDir);
+        Quaternion targetRotation = Quaternion.LookRotation(forwardDir, upDir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, planetRotateSpeed * Time.fixedDeltaTime);
 
         if (isGrounded)
         {

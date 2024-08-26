@@ -24,7 +24,7 @@ public class PickupControllerV2 : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))
                 {
-                    Debug.Log("Hit!");
+                    //Debug.Log("Hit!");    
                     if (hit.collider.gameObject.CompareTag("Object"))
                     {
                         PickupObject(hit.transform.gameObject);

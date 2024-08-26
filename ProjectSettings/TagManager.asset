@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Object
   - Gravity
+  - Ground
+  - JumpPad
+  - ForceField
+  - Interactable
+  - InteractHUD
   layers:
   - Default
   - TransparentFX

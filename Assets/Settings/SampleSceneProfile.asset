@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   scatter:
     m_OverrideState: 1
     m_Value: 0.254
@@ -62,7 +62,7 @@ MonoBehaviour:
     dimension: 1
   dirtIntensity:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 2
 --- !u!114 &-7492517669482419445
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -109,14 +109,14 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.225
+    m_Value: 0.398
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.041
   rounded:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-6109586150548886984
+--- !u!114 &-4788259207055990375
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,25 +125,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
-  m_Name: ColorAdjustments
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
   active: 1
-  postExposure:
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 0.87050617, y: 0.9958801, z: 1, w: 0}
+  midtones:
     m_OverrideState: 0
-    m_Value: 2
-  contrast:
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  highlights:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  shadowsStart:
     m_OverrideState: 0
     m_Value: 0
-  colorFilter:
+  shadowsEnd:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  hueShift:
+    m_Value: 0.3
+  highlightsStart:
     m_OverrideState: 0
-    m_Value: 0
-  saturation:
+    m_Value: 0.55
+  highlightsEnd:
     m_OverrideState: 0
-    m_Value: -10
+    m_Value: 1
 --- !u!114 &-4780482343365460619
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -191,7 +197,7 @@ MonoBehaviour:
   - {fileID: -8102677474604310672}
   - {fileID: -4780482343365460619}
   - {fileID: -7492517669482419445}
-  - {fileID: -6109586150548886984}
+  - {fileID: -4788259207055990375}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
